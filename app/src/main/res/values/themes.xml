@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.RedPulse" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/redpulse_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/redpulse_primary_light</item>
+        <item name="colorOnPrimaryContainer">@color/redpulse_chip_red_text</item>
+        <item name="colorSecondary">@color/redpulse_secondary</item>
+        <item name="colorSurface">@color/redpulse_surface</item>
+        <item name="colorSurfaceVariant">@color/redpulse_surface_alt</item>
+        <item name="colorOutline">@color/redpulse_border</item>
+        <item name="android:windowBackground">@color/redpulse_background</item>
+        <item name="android:statusBarColor">@color/redpulse_primary_dark</item>
+        <item name="android:navigationBarColor">@color/redpulse_background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="materialCardViewFilledStyle">@style/Widget.RedPulse.Card</item>
+        <item name="materialButtonStyle">@style/Widget.RedPulse.Button</item>
+        <item name="textInputStyle">@style/Widget.RedPulse.TextInputLayout</item>
+    </style>
+
+    <style name="Theme.RedPulse" parent="Base.Theme.RedPulse" />
+
+    <style name="Widget.RedPulse.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/redpulse_surface</item>
+        <item name="strokeColor">@color/redpulse_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">1dp</item>
+    </style>
+
+    <style name="Widget.RedPulse.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">54dp</item>
+        <item name="cornerRadius">18dp</item>
+        <item name="backgroundTint">@color/redpulse_primary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.RedPulse.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">18dp</item>
+        <item name="boxCornerRadiusTopEnd">18dp</item>
+        <item name="boxCornerRadiusBottomStart">18dp</item>
+        <item name="boxCornerRadiusBottomEnd">18dp</item>
+        <item name="boxStrokeColor">@color/redpulse_border</item>
+        <item name="hintTextColor">@color/redpulse_text_secondary</item>
+    </style>
+</resources>

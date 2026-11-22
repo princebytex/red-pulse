@@ -1,0 +1,140 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() { return request.auth != null; }
+    function isSelf(uid) { return isSignedIn() && request.auth.uid == uid; }
+    function currentUser() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    function isAdmin() {
+      return isSignedIn() && currentUser().role == 'admin';
+    }
+    function notBlocked() {
+      return isSignedIn() && currentUser().blocked != true && currentUser().deleted != true;
+    }
+    function hasRequestCredit() {
+      return isSignedIn() && currentUser().totalCredits >= 1;
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isSelf(userId) &&
+        request.resource.data.uid == request.auth.uid &&
+        request.resource.data.role == 'user' &&
+        request.resource.data.totalCredits == 1 &&
+        request.resource.data.blocked == false &&
+        request.resource.data.deleted == false;
+      allow update: if isAdmin() ||
+        (isSelf(userId) &&
+          request.resource.data.uid == resource.data.uid &&
+          request.resource.data.role == resource.data.role &&
+          request.resource.data.totalCredits == resource.data.totalCredits &&
+          request.resource.data.blocked == resource.data.blocked &&
+          request.resource.data.deleted == resource.data.deleted &&
+          request.resource.data.deletedReason == resource.data.deletedReason);
+      allow delete: if false;
+
+      match /devices/{deviceId} {
+        allow read, write: if isSelf(userId);
+      }
+    }
+
+    match /blood_requests/{requestId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && notBlocked() && hasRequestCredit() &&
+        request.resource.data.requesterId == request.auth.uid &&
+        request.resource.data.status == 'pending_review' &&
+        request.resource.data.active == false;
+      allow update: if isAdmin() ||
+        (isSignedIn() && resource.data.requesterId == request.auth.uid &&
+          request.resource.data.requesterId == resource.data.requesterId &&
+          request.resource.data.reviewedBy == resource.data.reviewedBy &&
+          request.resource.data.reviewedAt == resource.data.reviewedAt &&
+          request.resource.data.publishedAt == resource.data.publishedAt &&
+          request.resource.data.adminDecisionReason == resource.data.adminDecisionReason &&
+          (request.resource.data.status == resource.data.status ||
+            request.resource.data.status == 'cancelled' ||
+            request.resource.data.status == 'completed') &&
+          ((request.resource.data.status == 'cancelled' || request.resource.data.status == 'completed')
+            ? request.resource.data.active == false
+            : request.resource.data.active == resource.data.active) &&
+          (request.resource.data.status == 'completed'
+            ? hasRequestCredit()
+            : true) &&
+          (request.resource.data.status == 'completed' ||
+            request.resource.data.collectorUserId == resource.data.collectorUserId));
+      allow delete: if isAdmin();
+    }
+
+    match /donations/{donationId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && notBlocked() &&
+        request.resource.data.donorId == request.auth.uid &&
+        request.resource.data.status == 'interest_submitted';
+      allow update: if isAdmin() ||
+        (isSignedIn() && resource.data.donorId == request.auth.uid &&
+          request.resource.data.donorId == resource.data.donorId &&
+          request.resource.data.receiverId == resource.data.receiverId &&
+          request.resource.data.requestId == resource.data.requestId &&
+          (request.resource.data.status == resource.data.status ||
+            (resource.data.status == 'cancelled_by_requester' && request.resource.data.status == 'interest_submitted'))) ||
+        (isSignedIn() && resource.data.receiverId == request.auth.uid &&
+          request.resource.data.donorId == resource.data.donorId &&
+          request.resource.data.receiverId == resource.data.receiverId &&
+          request.resource.data.requestId == resource.data.requestId &&
+          (request.resource.data.status == resource.data.status ||
+            request.resource.data.status == 'confirmed_by_receiver' ||
+            request.resource.data.status == 'cancelled_by_requester') &&
+          (request.resource.data.status == 'confirmed_by_receiver' ? hasRequestCredit() : true));
+      allow delete: if false;
+    }
+
+    match /credit_transactions/{transactionId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /notifications/{notificationId} {
+      allow read: if isSignedIn() && (resource.data.targetUserId == request.auth.uid || isAdmin());
+      allow update: if isSignedIn() && resource.data.targetUserId == request.auth.uid;
+      allow create, delete: if false;
+    }
+
+    match /rewards/{rewardId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /leaderboards/{monthKey} {
+      allow read: if true;
+      allow write: if isAdmin();
+      match /entries/{entryId} {
+        allow read: if true;
+        allow write: if isAdmin();
+      }
+    }
+
+    match /admin_notices/{noticeId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /hospitals/{hospitalId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /reports/{reportId} {
+      allow read: if isAdmin() || (isSignedIn() && resource.data.reporterUserId == request.auth.uid);
+      allow create: if isSignedIn() && notBlocked();
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+
+    match /app_settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

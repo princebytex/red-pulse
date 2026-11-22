@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="redpulse_primary">#D32F2F</color>
+    <color name="redpulse_primary_dark">#A61E24</color>
+    <color name="redpulse_primary_light">#FFE3E4</color>
+    <color name="redpulse_secondary">#FF6B6B</color>
+    <color name="redpulse_accent">#F59E0B</color>
+    <color name="redpulse_success">#0F9D58</color>
+    <color name="redpulse_success_bg">#E7F7EF</color>
+    <color name="redpulse_warning_bg">#FFF4DB</color>
+    <color name="redpulse_background">#FFF6F7</color>
+    <color name="redpulse_surface">#FFFFFF</color>
+    <color name="redpulse_surface_alt">#FFF0F1</color>
+    <color name="redpulse_border">#F2D7DA</color>
+    <color name="redpulse_text_primary">#17202A</color>
+    <color name="redpulse_text_secondary">#6B7280</color>
+    <color name="redpulse_text_muted">#9CA3AF</color>
+    <color name="redpulse_chip_red_text">#B71C1C</color>
+    <color name="redpulse_chip_green_text">#0B7A43</color>
+    <color name="redpulse_chip_neutral_bg">#F4F5F7</color>
+    <color name="redpulse_chip_neutral_text">#4B5563</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>

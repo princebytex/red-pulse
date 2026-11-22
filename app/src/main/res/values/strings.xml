@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Red Pulse</string>
+    <string name="open_drawer">Open navigation drawer</string>
+    <string name="close_drawer">Close navigation drawer</string>
+    <string name="drawer_tagline">Emergency blood support network</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="request_blood_title">Request Blood</string>
+    <string name="live_requests_title">Live Requests</string>
+    <string name="my_requests_title">My Requests</string>
+    <string name="find_donor_title">Find Donor</string>
+    <string name="my_credits_title">My Credits</string>
+    <string name="history_title">History</string>
+    <string name="profile_title">Profile</string>
+    <string name="leaderboard_title">Leaderboard</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="admin_dashboard_title">Admin Dashboard</string>
+    <string name="admin_review_requests_title">Review Requests</string>
+    <string name="admin_users_title">Manage Users</string>
+    <string name="admin_notices_title">Notice Control</string>
+    <string name="logout_title">Logout</string>
+    <string name="maps_key_placeholder">YOUR_GOOGLE_MAPS_API_KEY</string>
+</resources>

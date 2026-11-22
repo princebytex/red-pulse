@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:id="@+id/tvAdminUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/redpulse_text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvAdminUserMeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/redpulse_text_secondary" />
+
+        <TextView
+            android:id="@+id/tvAdminUserStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/redpulse_text_primary" />
+
+        <TextView
+            android:id="@+id/tvAdminUserAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/redpulse_text_secondary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnUserHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/redpulse_surface_alt"
+                android:text="History"
+                android:textColor="@color/redpulse_text_primary" />
+
+            <Button
+                android:id="@+id/btnUserCredit"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:layout_marginEnd="8dp"
+                android:text="Credits" />
+
+            <Button
+                android:id="@+id/btnUserDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:backgroundTint="@color/redpulse_primary_dark"
+                android:text="Delete" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

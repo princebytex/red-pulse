@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group_user_root"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_home"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="@string/dashboard_title" />
+        <item
+            android:id="@+id/menu_request_blood"
+            android:icon="@android:drawable/ic_input_add"
+            android:title="@string/request_blood_title" />
+        <item
+            android:id="@+id/menu_live_requests"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="@string/live_requests_title" />
+        <item
+            android:id="@+id/menu_my_requests"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="@string/my_requests_title" />
+        <item
+            android:id="@+id/menu_find_donor"
+            android:icon="@android:drawable/ic_menu_mylocation"
+            android:title="@string/find_donor_title" />
+        <item
+            android:id="@+id/menu_my_credits"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/my_credits_title" />
+        <item
+            android:id="@+id/menu_history"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="@string/history_title" />
+        <item
+            android:id="@+id/menu_leaderboard"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="@string/leaderboard_title" />
+    </group>
+
+    <group
+        android:id="@+id/group_admin_root"
+        android:checkableBehavior="single"
+        android:visible="false">
+        <item
+            android:id="@+id/menu_admin_dashboard"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/admin_dashboard_title" />
+        <item
+            android:id="@+id/menu_admin_requests"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="@string/admin_review_requests_title" />
+        <item
+            android:id="@+id/menu_admin_users"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="@string/admin_users_title" />
+        <item
+            android:id="@+id/menu_admin_notices"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/admin_notices_title" />
+    </group>
+
+    <group
+        android:id="@+id/group_common_root"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_profile"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="@string/profile_title" />
+        <item
+            android:id="@+id/menu_notifications"
+            android:icon="@android:drawable/ic_dialog_email"
+            android:title="@string/notifications_title" />
+    </group>
+
+    <item
+        android:id="@+id/menu_logout"
+        android:icon="@android:drawable/ic_lock_power_off"
+        android:title="@string/logout_title" />
+</menu>
